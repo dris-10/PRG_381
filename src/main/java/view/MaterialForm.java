@@ -173,6 +173,7 @@ public class MaterialForm extends JFrame {
 
         JPanel panel = new JPanel();
 
+        JButton btnSuppliers = new JButton("Manage Suppliers");
 
         JButton add =
                 new JButton("Add");
@@ -205,6 +206,7 @@ public class MaterialForm extends JFrame {
         panel.add(update);
         panel.add(delete);
         panel.add(clear);
+        panel.add(btnSuppliers);
 
 
 
@@ -219,6 +221,8 @@ public class MaterialForm extends JFrame {
         clear.addActionListener(e->clearFields());
 
         viewAll.addActionListener(e->loadMaterials());
+
+        btnSuppliers.addActionListener(e -> openSupplierWindow());
 
         return panel;
 
@@ -522,6 +526,16 @@ public class MaterialForm extends JFrame {
         }
 
     }//end of delete
+
+    private void openSupplierWindow() {
+        JFrame supplierFrame = new JFrame("Supplier Management");
+        supplierFrame.setSize(800, 600);
+        supplierFrame.setLocationRelativeTo(this);
+
+        supplierFrame.add(new view.SupplierPanel());
+
+        supplierFrame.setVisible(true);
+    }
 
     private void clearFields(){
 
