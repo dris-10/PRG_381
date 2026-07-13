@@ -98,6 +98,16 @@ PostgreSQL Database
 ```text
 CleaningInventorySystem
 │
+│
+├── docs
+│   └── images
+│       ├── ERD.png
+│       ├── login.png
+│       ├── dashboard.png
+│       ├── materials.png
+│       ├── suppliers.png
+│       ├── cleaners.png
+│       └── stock.png
 ├── src
 │   ├── main
 │   │   ├── java
@@ -226,6 +236,24 @@ Run the SQL files in the following order:
 3. `SampleData_Materials.sql`
 
 > Ensure the database schema is created before inserting the sample data.
+
+### Step 3
+
+Open:
+
+```
+src/main/resources/database.properties
+```
+
+Update:
+
+```properties
+db.url=jdbc:postgresql://localhost:5432/CleaningInventoryDB  //make sure you use the same port as
+your PostgreSQL server (5432 is the default port)
+db.user=postgres //default username for PostgreSQL Server
+db.password=YOUR_PASSWORD
+```
+
 
 ## Run the project
 
