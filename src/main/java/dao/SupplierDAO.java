@@ -15,7 +15,7 @@ public class SupplierDAO {
     }
 
     public void addSupplier(Supplier supplier) throws SQLException {
-        String query = "INSERT INTO suppliers (name, contact_person, phone, email, address) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO suppliers (supplier_name, contact_person, phone, email, address) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, supplier.getName());
             stmt.setString(2, supplier.getContactPerson());
@@ -32,8 +32,8 @@ public class SupplierDAO {
         try (Connection conn = getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 suppliers.add(new Supplier(
-                        rs.getInt("id"),
-                        rs.getString("name"),
+                        rs.getInt("supplier_id"),
+                        rs.getString("supplier_name"),
                         rs.getString("contact_person"),
                         rs.getString("phone"),
                         rs.getString("email"),
@@ -45,7 +45,7 @@ public class SupplierDAO {
     }
 
     public void updateSupplier(Supplier supplier) throws SQLException {
-        String query = "UPDATE suppliers SET name=?, contact_person=?, phone=?, email=?, address=? WHERE id=?";
+        String query = "UPDATE suppliers SET supplier_name=?, contact_person=?, phone=?, email=?, address=? WHERE supplier_id=?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, supplier.getName());
             stmt.setString(2, supplier.getContactPerson());
@@ -58,7 +58,7 @@ public class SupplierDAO {
     }
 
     public void deleteSupplier(int id) throws SQLException {
-        String query = "DELETE FROM suppliers WHERE id=?";
+        String query = "DELETE FROM suppliers WHERE supplier_id=?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
