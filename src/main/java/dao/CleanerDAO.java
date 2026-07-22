@@ -27,7 +27,7 @@ public class CleanerDAO {
             e.printStackTrace();
             return false;
         }
-    }//end of add cleaner
+    }
 
     //Get all cleaners
     public List<Cleaner> getAllCleaners(){
@@ -58,7 +58,7 @@ public class CleanerDAO {
             e.printStackTrace();
         }
         return cleaners;
-    }//end of get all cleaners
+    }
 
     //search by id
     public Cleaner findCleaner(int cleanerId){
@@ -85,7 +85,7 @@ public class CleanerDAO {
             e.printStackTrace();
         }
         return null;
-    }//end of search by ID
+    }
 
     //update cleaner
     public boolean updateCleaner(Cleaner cleaner){
@@ -113,7 +113,7 @@ public class CleanerDAO {
             e.printStackTrace();
             return false;
         }
-    }//end of update cleaner
+    }
 
     //delete cleaner
     public boolean deleteCleaner(int cleanerId) {
@@ -130,5 +130,5 @@ public class CleanerDAO {
             e.printStackTrace();
             return false;
         }
-    }//end of delete cleaner
+    }
 }
