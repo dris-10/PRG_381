@@ -1,6 +1,7 @@
 package util;
 
 import model.Material;
+import model.User;
 
 
 public class Validation {
@@ -123,6 +124,63 @@ public class Validation {
         }
 
         return "Stock Available";
+    }
+
+    // User Validation
+    // Full name:
+    // Required
+    // Maximum 100 characters
+    public static boolean validFullName(String fullName) {
+
+        return !isEmpty(fullName)
+                && fullName.length() <= 100;
+    }
+
+    // Username:
+    // Required
+    // Maximum 50 characters
+    public static boolean validUsername(String username) {
+
+        return !isEmpty(username)
+                && username.length() <= 50;
+    }
+
+    // Email:
+    // Required
+    // Maximum 50 characters
+    // Basic format check
+    public static boolean validEmail(String email) {
+
+        return !isEmpty(email)
+                && email.length() <= 50
+                && email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+    }
+
+    // Password:
+    // Required
+    // Minimum 8 characters
+    public static boolean validPassword(String password) {
+
+        return password != null
+                && password.length() >= 8;
+    }
+
+    // Role:
+    // Must match one of the allowed roles
+    public static boolean validRole(String role) {
+
+        return "Storekeeper".equals(role)
+                || "Supervisor".equals(role);
+    }
+
+    // Used before registering a new user
+    public static boolean validUser(User user) {
+
+        return user != null
+                && validFullName(user.getFullName())
+                && validUsername(user.getUsername())
+                && validEmail(user.getEmail())
+                && validRole(user.getRole());
     }
 
 }
