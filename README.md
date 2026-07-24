@@ -155,15 +155,12 @@ The application uses PostgreSQL.
 
 ## Login Screen
 
-> Replace with screenshot
-
 ![Login](docs/images/login.png)
 
 ---
 
 ## Dashboard
 
-> Replace with screenshot
 
 ![Dashboard](docs/images/dashboard.png)
 
@@ -171,7 +168,6 @@ The application uses PostgreSQL.
 
 ## Material Management
 
-> Replace with screenshot
 
 ![Materials](docs/images/materials.png)
 
@@ -179,7 +175,6 @@ The application uses PostgreSQL.
 
 ## Supplier Management
 
-> Replace with screenshot
 
 ![Suppliers](docs/images/suppliers.png)
 
@@ -187,17 +182,15 @@ The application uses PostgreSQL.
 
 ## Cleaner Management
 
-> Replace with screenshot
 
 ![Cleaners](docs/images/cleaners.png)
 
 ---
 
-## Stock Issuance
+## Register
 
-> Replace with screenshot
 
-![Stock Issuance](docs/images/stock.png)
+![Stock Issuance](docs/images/register.png)
 
 ---
 
