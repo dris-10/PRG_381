@@ -4,6 +4,7 @@ import model.Material;
 import service.MaterialService;
 import dao.DBConnection;
 import view.MaterialForm;
+import view.SupplierPanel;
 
 import java.sql.Connection;
 
