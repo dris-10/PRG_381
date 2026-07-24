@@ -100,6 +100,8 @@ CleaningInventorySystem
 │
 │
 ├── docs
+│   └──video
+│       └──demo.mp4
 │   └── images
 │       ├── ERD.png
 │       ├── login.png
@@ -124,7 +126,6 @@ CleaningInventorySystem
 │   └── resources
 │       ├── database.properties
 │       ├── Create_Database.sql
-│       ├── SampleData_Materials.sql
 │       └── SampleData_System.sql
 │
 ├── pom.xml
@@ -191,6 +192,12 @@ The application uses PostgreSQL.
 
 
 ![Stock Issuance](docs/images/register.png)
+
+---
+
+## Demo Video
+
+[Watch the demo video](docs/video/demo.mp4)
 
 ---
 
