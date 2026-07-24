@@ -46,10 +46,8 @@ public class MaterialDAO {
         List<Material> materials = new ArrayList<>();
 
         String sql = """
-                SELECT *
-                FROM materials
-                ORDER BY material_name
-                """;
+                    SELECT m.material_id, m.material_name, m.category, m.quantity, m.reorder_level, m.unit, m.supplier_id, s.supplier_name FROM materials m Join suppliers s on m.supplier_id = s.supplier_id ORDER BY m.material_name """;
+
         try (Connection connection = DBConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -64,7 +62,7 @@ public class MaterialDAO {
                 material.setReorderLevel(resultSet.getInt("reorder_level"));
                 material.setUnit(resultSet.getString("unit"));
                 material.setSupplierId(resultSet.getInt("supplier_id"));
-
+                material.setSupplierName(resultSet.getString("supplier_name"));
                 materials.add(material);
             }
 
@@ -76,7 +74,8 @@ public class MaterialDAO {
 
     //search by id
     public  Material getMaterialById(int materialId){
-        String sql = "SELECT * FROM materials WHERE material_id = ?";
+        String sql = """
+                    SELECT m.material_id, m.material_name, m.category, m.quantity, m.reorder_level, m.unit, m.supplier_id, s.supplier_name FROM materials m Join suppliers s on m.supplier_id = s.supplier_id WHERE m.material_id= ? """;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -94,7 +93,8 @@ public class MaterialDAO {
                         resultSet.getInt("quantity"),
                         resultSet.getInt("reorder_level"),
                         resultSet.getString("unit"),
-                        resultSet.getInt("supplier_id")
+                        resultSet.getInt("supplier_id"),
+                        resultSet.getString("supplier_name")
                 );
             }
         }catch(SQLException e){
