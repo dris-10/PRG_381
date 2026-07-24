@@ -9,6 +9,7 @@ public class Material {
     private int reorderLevel;
     private String unit;
     private int supplierId;
+    private String supplierName;
 
 
     // Default constructor
@@ -20,7 +21,7 @@ public class Material {
     // Full constructor
     public Material(int materialId, String materialName, String category,
                     int quantity, int reorderLevel,
-                    String unit, int supplierId) {
+                    String unit, int supplierId, String supplierName) {
 
         this.materialId = materialId;
         this.materialName = materialName;
@@ -29,6 +30,7 @@ public class Material {
         this.reorderLevel = reorderLevel;
         this.unit = unit;
         this.supplierId = supplierId;
+        this.supplierName = supplierName;
     }
 
 
@@ -92,6 +94,14 @@ public class Material {
 
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
 

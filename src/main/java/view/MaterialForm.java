@@ -48,7 +48,7 @@ public class MaterialForm extends JFrame {
 
         setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
@@ -149,7 +149,8 @@ public class MaterialForm extends JFrame {
                 "Name",
                 "Category",
                 "Quantity",
-                "Unit"
+                "Unit",
+                "Supplier"
         };
 
 
@@ -178,10 +179,6 @@ public class MaterialForm extends JFrame {
                 new JButton("Add");
 
 
-        JButton viewAll =
-                new JButton("View All");
-
-
         JButton update =
                 new JButton("Update");
 
@@ -200,7 +197,6 @@ public class MaterialForm extends JFrame {
 
 
         panel.add(add);
-        panel.add(viewAll);
         panel.add(find);
         panel.add(update);
         panel.add(delete);
@@ -218,7 +214,7 @@ public class MaterialForm extends JFrame {
 
         clear.addActionListener(e->clearFields());
 
-        viewAll.addActionListener(e->loadMaterials());
+
 
         return panel;
 
@@ -316,7 +312,8 @@ public class MaterialForm extends JFrame {
                     material.getMaterialName(),
                     material.getCategory(),
                     material.getQuantity(),
-                    material.getUnit()
+                    material.getUnit(),
+                    material.getSupplierName()
             });
 
         }
@@ -327,14 +324,15 @@ public class MaterialForm extends JFrame {
 
         try{
 
-            int id = Integer.parseInt(idField.getText());
+            String name = nameField.getText();
 
 
-            Material material = controller.findMaterial(id);
+            Material material = controller.findMaterial(name);
 
 
             if(material != null){
 
+                idField.setText(String.valueOf(material.getMaterialId()));
                 nameField.setText(material.getMaterialName());
                 categoryField.setText(material.getCategory());
                 quantityField.setText(
@@ -522,6 +520,7 @@ public class MaterialForm extends JFrame {
         }
 
     }//end of delete
+
 
     private void clearFields(){
 
