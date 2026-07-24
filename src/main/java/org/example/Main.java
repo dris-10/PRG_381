@@ -4,6 +4,8 @@ import model.Material;
 import service.MaterialService;
 import dao.DBConnection;
 import view.MaterialForm;
+import view.CleanerDashboard;
+import javax.swing.SwingUtilities;
 
 import java.sql.Connection;
 
@@ -21,6 +23,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        new MaterialForm();
+        
+        SwingUtilities.invokeLater(() -> new CleanerDashboard().setVisible(true));
     }
 }
