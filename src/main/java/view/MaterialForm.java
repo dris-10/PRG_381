@@ -324,14 +324,15 @@ public class MaterialForm extends JFrame {
 
         try{
 
-            int id = Integer.parseInt(idField.getText());
+            String name = nameField.getText();
 
 
-            Material material = controller.findMaterial(id);
+            Material material = controller.findMaterial(name);
 
 
             if(material != null){
 
+                idField.setText(String.valueOf(material.getMaterialId()));
                 nameField.setText(material.getMaterialName());
                 categoryField.setText(material.getCategory());
                 quantityField.setText(

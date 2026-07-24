@@ -73,14 +73,14 @@ public class MaterialDAO {
     }//end of get all material
 
     //search by id
-    public  Material getMaterialById(int materialId){
+    public  Material getMaterialById(String name){
         String sql = """
-                    SELECT m.material_id, m.material_name, m.category, m.quantity, m.reorder_level, m.unit, m.supplier_id, s.supplier_name FROM materials m Join suppliers s on m.supplier_id = s.supplier_id WHERE m.material_id= ? """;
+                    SELECT m.material_id, m.material_name, m.category, m.quantity, m.reorder_level, m.unit, m.supplier_id, s.supplier_name FROM materials m Join suppliers s on m.supplier_id = s.supplier_id WHERE LOWER(m.material_name) LIKE LOWER(?) ORDER BY m.material_name""";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, materialId);
+            statement.setString(1, "%" + name + "%");
 
             ResultSet resultSet = statement.executeQuery();
 

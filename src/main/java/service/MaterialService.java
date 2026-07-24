@@ -31,13 +31,13 @@ public class MaterialService {
     }
 
     // Find Material By ID
-    public Material findMaterial(int id){
+    public Material findMaterial(String name){
 
-        if(!Validation.validFindId(id)){
+        if(!Validation.validMaterialName(name)){
             return null;
         }
 
-        return materialDAO.getMaterialById(id);
+        return materialDAO.getMaterialById(name);
     }
 
     // Update Material
