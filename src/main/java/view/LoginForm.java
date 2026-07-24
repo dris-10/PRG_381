@@ -94,7 +94,7 @@ public class LoginForm extends JFrame {
 
             Session.setCurrentUser(user);
             dispose();
-            new DashboardForm();
+            new DashboardForm(user);
 
         } else {
 

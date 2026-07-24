@@ -195,4 +195,46 @@ public class MaterialDAO {
 
         return materials;
     }//end of low stock
+
+    public int getMaterialCount() {
+
+        String sql = "SELECT COUNT(*) FROM materials";
+
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public int getLowStockCount() {
+
+        String sql = """
+        SELECT COUNT(*)
+        FROM materials
+        WHERE quantity <= reorder_level
+        """;
+
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 }

@@ -182,6 +182,7 @@ public class Validation {
                 && validUsername(user.getUsername())
                 && validEmail(user.getEmail())
                 && validRole(user.getRole());
+    }
     //create the cleaner validations for our crud functions
     public static boolean validCleaner(Cleaner cleaner) {
 

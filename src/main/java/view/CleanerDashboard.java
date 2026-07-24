@@ -1,6 +1,7 @@
 package view;
 
 import dao.DBConnection;
+import model.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,9 @@ public class CleanerDashboard extends JFrame {
     private JButton btnUpdate;
     private JButton btnDelete;
     private JButton btnRefresh;
+    private JButton btnBack;
+    private User currentUser;
+
 
     public CleanerDashboard() {
         setTitle("Cleaner Management Dashboard");
@@ -29,6 +33,7 @@ public class CleanerDashboard extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        setVisible(true);
 
         JLabel lblTitle = new JLabel("Cleaner Management", JLabel.CENTER);
         lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
@@ -70,11 +75,13 @@ public class CleanerDashboard extends JFrame {
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
         btnRefresh = new JButton("Refresh");
+        btnBack = new JButton("Back to Dashboard");
 
         panelButtons.add(btnAdd);
         panelButtons.add(btnUpdate);
         panelButtons.add(btnDelete);
         panelButtons.add(btnRefresh);
+        panelButtons.add(btnBack);
 
         JPanel panelSouth = new JPanel(new BorderLayout());
         panelSouth.add(panelForm, BorderLayout.CENTER);
@@ -85,6 +92,10 @@ public class CleanerDashboard extends JFrame {
         btnUpdate.addActionListener(e -> updateCleaner());
         btnDelete.addActionListener(e -> deleteCleaner());
         btnRefresh.addActionListener(e -> loadCleanerData());
+        btnBack.addActionListener(e -> {
+            new DashboardForm(currentUser).setVisible(true);
+            dispose();
+        });
     }
 
     private void loadCleanerData() {

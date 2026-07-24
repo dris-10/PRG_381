@@ -2,21 +2,24 @@ package view;
 
 import controller.SupplierController;
 import model.Supplier;
+import model.User;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class SupplierPanel extends JPanel {
+public class SupplierPanel extends JFrame {
     private SupplierController controller;
     private JTable table;
     private DefaultTableModel tableModel;
     private JTextField txtName, txtContact, txtPhone, txtEmail, txtAddress;
+    private User currentUser;
 
     public SupplierPanel() {
         controller = new SupplierController();
         setLayout(new BorderLayout());
-
+        setVisible(true);
         // Top Form Area
         JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
         formPanel.setBorder(BorderFactory.createTitledBorder("Manage Suppliers"));
@@ -45,9 +48,11 @@ public class SupplierPanel extends JPanel {
         JButton btnAdd = new JButton("Add Supplier");
         JButton btnUpdate = new JButton("Update Selected");
         JButton btnDelete = new JButton("Delete Selected");
+        JButton btnBack = new JButton("Back to Dashboard");
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnUpdate);
         buttonPanel.add(btnDelete);
+        buttonPanel.add(btnBack);
         formPanel.add(buttonPanel);
 
         add(formPanel, BorderLayout.NORTH);
@@ -61,6 +66,9 @@ public class SupplierPanel extends JPanel {
         btnAdd.addActionListener(e -> addSupplier());
         btnUpdate.addActionListener(e -> updateSupplier());
         btnDelete.addActionListener(e -> deleteSupplier());
+        btnBack.addActionListener(e -> {
+            new DashboardForm(currentUser).setVisible(true);
+        });
 
         // This makes the txt fields populate when you click a row in the table
         table.getSelectionModel().addListSelectionListener(e -> {

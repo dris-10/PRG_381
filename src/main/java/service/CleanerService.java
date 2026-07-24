@@ -48,4 +48,8 @@ public class CleanerService {
         return cleanerDAO.deleteCleaner(cleanerId);
     }
 
+    public int getCleanerCount() {
+        return cleanerDAO.getCleanerCount();
+    }
+
 }

@@ -32,4 +32,8 @@ public class CleanerController {
     public boolean deleteCleaner(int cleanerId){
         return cleanerService.deleteCleaner(cleanerId);
     }
+
+    public int getCleanerCount() {
+        return cleanerService.getCleanerCount();
+    }
 }

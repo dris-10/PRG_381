@@ -65,4 +65,23 @@ public class SupplierDAO {
         }
     }
 
+    public int getSupplierCount() {
+
+        String sql = "SELECT COUNT(*) FROM suppliers";
+
+        try (Connection connection = DBConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
 }

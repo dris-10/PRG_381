@@ -41,4 +41,8 @@ public class SupplierService {
             throw new IllegalArgumentException("Phone number is required.");
         }
     }
+
+    public int getSupplierCount() {
+        return supplierDAO.getSupplierCount();
+    }
 }

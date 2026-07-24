@@ -5,67 +5,69 @@ import service.MaterialService;
 import java.util.List;
 
 public class MaterialController {
-    private MaterialService materialService;
+    private final MaterialService materialService;
 
 
     // Constructor
-    public MaterialController(){
+    public MaterialController() {
 
         materialService = new MaterialService();
 
     }
 
 
-
     // Add Material
-    public boolean addMaterial(Material material){
+    public boolean addMaterial(Material material) {
 
         return materialService.addMaterial(material);
 
     }
 
 
-
     // Get all materials
-    public List<Material> getAllMaterials(){
+    public List<Material> getAllMaterials() {
 
         return materialService.getAllMaterials();
 
     }
 
 
-
     // Find material by ID
-    public Material findMaterial(String materialName){
+    public Material findMaterial(String materialName) {
 
         return materialService.findMaterial(materialName);
 
     }
 
 
-
     // Update material
-    public boolean updateMaterial(Material material){
+    public boolean updateMaterial(Material material) {
 
         return materialService.updateMaterial(material);
 
     }
 
 
-
     // Delete material
-    public boolean deleteMaterial(int materialId){
+    public boolean deleteMaterial(int materialId) {
 
         return materialService.deleteMaterial(materialId);
 
     }
 
 
-
     // Get low stock materials
-    public List<Material> getLowStockMaterials(){
+    public List<Material> getLowStockMaterials() {
 
         return materialService.getLowStockMaterials();
 
+    }
+
+    public int getMaterialCount() {
+        return materialService.getMaterialCount();
+    }
+
+    public int getLowStockCount() {
+        return materialService.getLowStockCount();
     }
 }

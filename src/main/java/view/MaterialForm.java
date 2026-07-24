@@ -2,6 +2,8 @@ package view;
 //importing
 import model.Material;
 import controller.MaterialController;
+import model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -27,7 +29,7 @@ public class MaterialForm extends JFrame {
     // Controller
     private MaterialController controller;
 
-
+    private User currentUser;
 
     public MaterialForm(){
 
@@ -194,6 +196,8 @@ public class MaterialForm extends JFrame {
         JButton clear =
                 new JButton("Clear");
 
+        JButton back =
+                new JButton("Back to Dashboard");
 
 
         panel.add(add);
@@ -201,6 +205,7 @@ public class MaterialForm extends JFrame {
         panel.add(update);
         panel.add(delete);
         panel.add(clear);
+        panel.add(back);
 
 
 
@@ -214,6 +219,12 @@ public class MaterialForm extends JFrame {
 
         clear.addActionListener(e->clearFields());
 
+
+
+        back.addActionListener(e -> {
+            new DashboardForm(currentUser).setVisible(true);
+            dispose();
+        });
 
 
         return panel;

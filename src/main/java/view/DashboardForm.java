@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 import model.User;
 import model.Material;
 import controller.MaterialController;
@@ -67,10 +68,8 @@ public class DashboardForm extends JFrame {
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-
         //create main panel
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         setContentPane(mainPanel);
         mainPanel.setLayout(new BorderLayout());
     }//end of setupForm
@@ -112,6 +111,40 @@ public class DashboardForm extends JFrame {
         sidebar.add(btnUsers);
         sidebar.add(btnLowStock);
         sidebar.add(btnLogOut);
+
+        btnMaterials.addActionListener(e -> {
+            new MaterialForm();
+            dispose();
+        });
+
+        btnSuppliers.addActionListener(e -> {
+            new SupplierPanel();
+            dispose();
+        });
+
+        btnCleaners.addActionListener(e -> {
+            new CleanerDashboard();
+            dispose();
+        });
+/*
+        btnStock.addActionListener(e -> {
+            new StockIssuanceForm();
+            dispose();
+        });
+*/
+        btnUsers.addActionListener(e -> {
+            new RegisterForm();
+            dispose();
+        });
+
+        btnLowStock.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Low Stock Report");
+        });
+
+        btnLogOut.addActionListener(e -> {
+            dispose();
+            new LoginForm();
+        });
 
         mainPanel.add(sidebar, BorderLayout.WEST);
     }//end of createSideBar
@@ -198,6 +231,7 @@ public class DashboardForm extends JFrame {
 
         }
     }//end of loadLowStockTable
+
 
 
 

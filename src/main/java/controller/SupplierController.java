@@ -43,4 +43,8 @@ public class SupplierController {
             return "Error deleting supplier: " + e.getMessage();
         }
     }
+
+    public int getSupplierCount() {
+        return service.getSupplierCount();
+    }
 }

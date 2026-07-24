@@ -84,4 +84,11 @@ public class MaterialService {
 
     }
 
+    public int getMaterialCount() {
+        return materialDAO.getMaterialCount();
+    }
+
+    public int getLowStockCount() {
+        return materialDAO.getLowStockCount();
+    }
 }
