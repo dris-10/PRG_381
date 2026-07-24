@@ -1,5 +1,6 @@
 package util;
 
+import model.Cleaner;
 import model.Material;
 
 
@@ -123,6 +124,31 @@ public class Validation {
         }
 
         return "Stock Available";
+    }
+
+    //create the cleaner validations for our crud functions
+    public static boolean validCleaner(Cleaner cleaner) {
+
+        if (cleaner == null) {
+            return false;
+        }
+        String firstName = cleaner.getFirstName();
+        if (firstName == null || firstName.trim().isEmpty() || firstName.length() > 50) {
+            return false;
+        }
+        String lastName = cleaner.getLastName();
+        if (lastName == null || lastName.trim().isEmpty() || lastName.length() > 50) {
+            return false;
+        }
+        String phone = cleaner.getPhone();
+        if (phone != null && phone.length() > 20) {
+            return false;
+        }
+        String department = cleaner.getDepartment();
+        if (department != null && department.length() > 100) {
+            return false;
+        }
+        return true;
     }
 
 }
