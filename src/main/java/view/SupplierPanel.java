@@ -43,8 +43,10 @@ public class SupplierPanel extends JPanel {
 
         JPanel buttonPanel = new JPanel();
         JButton btnAdd = new JButton("Add Supplier");
+        JButton btnUpdate = new JButton("Update Selected");
         JButton btnDelete = new JButton("Delete Selected");
         buttonPanel.add(btnAdd);
+        buttonPanel.add(btnUpdate);
         buttonPanel.add(btnDelete);
         formPanel.add(buttonPanel);
 
@@ -57,7 +59,20 @@ public class SupplierPanel extends JPanel {
 
         // Event Listeners
         btnAdd.addActionListener(e -> addSupplier());
+        btnUpdate.addActionListener(e -> updateSupplier());
         btnDelete.addActionListener(e -> deleteSupplier());
+
+        // This makes the txt fields populate when you click a row in the table
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
+                int row = table.getSelectedRow();
+                txtName.setText(tableModel.getValueAt(row, 1) != null ? tableModel.getValueAt(row, 1).toString() : "");
+                txtContact.setText(tableModel.getValueAt(row, 2) != null ? tableModel.getValueAt(row, 2).toString() : "");
+                txtPhone.setText(tableModel.getValueAt(row, 3) != null ? tableModel.getValueAt(row, 3).toString() : "");
+                txtEmail.setText(tableModel.getValueAt(row, 4) != null ? tableModel.getValueAt(row, 4).toString() : "");
+                txtAddress.setText(tableModel.getValueAt(row, 5) != null ? tableModel.getValueAt(row, 5).toString() : "");
+            }
+        });
 
         loadTableData();
     }
@@ -69,6 +84,26 @@ public class SupplierPanel extends JPanel {
         );
         JOptionPane.showMessageDialog(this, msg);
         if(msg.contains("successfully")) { clearFields(); loadTableData(); }
+    }
+
+    private void updateSupplier() {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (int) tableModel.getValueAt(selectedRow, 0);
+
+            String msg = controller.updateSupplier(
+                    id, txtName.getText(), txtContact.getText(),
+                    txtPhone.getText(), txtEmail.getText(), txtAddress.getText()
+            );
+
+            JOptionPane.showMessageDialog(this, msg);
+            if(msg.contains("successfully")) {
+                clearFields();
+                loadTableData();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a supplier from the table to update.");
+        }
     }
 
     private void deleteSupplier() {

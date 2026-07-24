@@ -36,9 +36,9 @@ public class MaterialController {
 
 
     // Find material by ID
-    public Material findMaterial(int materialId){
+    public Material findMaterial(String materialName){
 
-        return materialService.findMaterial(materialId);
+        return materialService.findMaterial(materialName);
 
     }
 
